@@ -11,9 +11,15 @@
     <%= javascript_importmap_tags %>
   </head>
 
-  <body>
-    <main class="container mx-auto mt-28 px-5 flex">
+  <body class="bg-gradient-to-br from-indigo-100 to-purple-100 min-h-screen">
+    <main class="container mx-auto py-28 px-5 flex">
       <%= yield %>
     </main>
   </body>
+
+  <script>
+    document.addEventListener("htmx:configRequest", function(event) {
+      event.detail.headers["X-CSRF-Token"] = document.querySelector("meta[name='csrf-token']").content;
+    });
+  </script>
 </html>
