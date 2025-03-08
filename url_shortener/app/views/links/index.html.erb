@@ -1,9 +1,27 @@
-<h1>Links</h1>
+<div class="w-full max-w-3xl mx-auto flex flex-col gap-8">
+  <h1 class="sr-only">Shorten your Links</h1>
 
-<button hx-get="/links" hx-target="#links-list" hx-swap="outerHTML">
-  Load Links
-</button>
-
-<div id="links-list">
-
+  <section class="bg-white rounded-xl shadow-xl p-8">
+    <form hx-post="/links" hx-swap="none" hx-on::after-request="this.reset()" class="flex flex-col gap-4">
+      <div class="flex flex-col space-y-2">
+        <label
+          for="url"
+          class="text-sm font-medium text-gray-700"
+        >
+          Enter your long URL
+        </label>
+        <input
+          type="url"
+          id="url"
+          name="link[url]"
+          placeholder="https://example.com/very/long/url"
+          class="px-4 py-3 rounded-lg border border-gray-300 focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition-all duration-200"
+          required
+        />
+      </div>
+      <button class="cursor-pointer w-full py-3 px-6 rounded-lg text-white font-medium transition-all duration-200 bg-indigo-600 hover:bg-indigo-700">
+        Shorten URL
+      </button>
+    </form>
+  </section>
 </div>
