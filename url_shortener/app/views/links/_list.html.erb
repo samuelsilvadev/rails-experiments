@@ -1,5 +1,8 @@
 <section id="links" class="overflow-y-auto shadow-xl rounded-lg">
-  <ul class="bg-white flex flex-col p-4 gap-2">
+  <ul
+    class="bg-white flex flex-col p-4 gap-2"
+    <%= links.empty? ? 'hidden' : '' %>
+  >
     <% links.each do |link| %>
       <li>
         <div class="flex items-center space-x-4 bg-gray-50 p-4 g">
@@ -13,7 +16,7 @@
             class="p-2 hover:bg-gray-200 rounded-lg transition-colors duration-200"
             title="Copy to clipboard"
           >
-            Copy
+            📋
           </button>
           <a
             href="<%= link.url %>"
@@ -22,8 +25,20 @@
             class="p-2 hover:bg-gray-200 rounded-lg transition-colors duration-200"
             title="Open link"
           >
-            Open
+            🔗
           </a>
+          <form
+            hx-delete="/links/<%= link.id %>"
+            hx-target="#links"
+            hx-swap="outerHTML"
+          >
+            <button
+              class="p-2 hover:bg-gray-200 rounded-lg transition-colors duration-200"
+              title="Delete link"
+            >
+              🗑️
+            </button>
+          </form>
         </div>
       </li>
     <% end %>

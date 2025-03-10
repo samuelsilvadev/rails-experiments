@@ -23,6 +23,24 @@ class LinksController < ApplicationController
     end
   end
 
+  def destroy
+    link = Link.find_by(id: params[:id])
+
+    if link.present?
+      if link.destroy
+        if request.headers['hx-request']
+          index
+        else
+          render status: :no_content
+        end
+      else
+        render status: :unprocessable_entity
+      end
+    else
+      render status: :not_found
+    end
+  end
+
   private
 
   def link_params
