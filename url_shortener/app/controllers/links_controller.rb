@@ -1,6 +1,6 @@
 class LinksController < ApplicationController
   def index
-    @links = Link.all.order(created_at: :desc)
+    @links = Link.recent_first
 
     if request.headers['hx-request']
       render partial: 'links/list', locals: { links: @links }

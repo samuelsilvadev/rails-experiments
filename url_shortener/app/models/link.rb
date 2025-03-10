@@ -8,4 +8,7 @@
 # - created_at: datetime, not null
 # - updated_at: datetime, not null
 class Link < ApplicationRecord
+  scope :recent_first, -> { order(created_at: :desc) }
+
+  validates :url, presence: true
 end
