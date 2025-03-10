@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html class="h-full">
   <head>
     <title>UrlShortener</title>
     <meta name="viewport" content="width=device-width,initial-scale=1" />
@@ -11,8 +11,10 @@
     <%= javascript_importmap_tags %>
   </head>
 
-  <body class="bg-gradient-to-br from-indigo-100 to-purple-100 min-h-screen">
-    <main class="container mx-auto py-28 px-5 flex">
+  <body
+    class="bg-gradient-to-br from-indigo-100 to-purple-100 min-h-screen h-full"
+  >
+    <main class="container mx-auto pt-22 pb-6 px-5 flex">
       <%= yield %>
     </main>
   </body>
