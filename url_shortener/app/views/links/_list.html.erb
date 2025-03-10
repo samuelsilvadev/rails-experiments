@@ -1,7 +1,31 @@
-<ul>
+<section id="links">
+  <ul class="bg-white shadow-xl p-4 rounded-lg flex flex-col gap-2">
     <% links.each do |link| %>
-        <li>
-            <%= link.title %>
-        </li>
+      <li>
+        <div class="flex items-center space-x-4 bg-gray-50 p-4 g">
+          <input
+            type="text"
+            value="<%= link.url %>"
+            readonly
+            class="flex-1 bg-transparent outline-none text-gray-800"
+          />
+          <button
+            class="p-2 hover:bg-gray-200 rounded-lg transition-colors duration-200"
+            title="Copy to clipboard"
+          >
+            Copy
+          </button>
+          <a
+            href="<%= link.url %>"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="p-2 hover:bg-gray-200 rounded-lg transition-colors duration-200"
+            title="Open link"
+          >
+            Open
+          </a>
+        </div>
+      </li>
     <% end %>
-</ul>
+  </ul>
+</section>

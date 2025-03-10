@@ -1,13 +1,18 @@
 <div class="w-full max-w-3xl mx-auto flex flex-col gap-8">
   <h1 class="sr-only">Shorten your Links</h1>
 
-  <section class="bg-white rounded-xl shadow-xl p-8">
-    <form hx-post="/links" hx-swap="none" hx-on::after-request="this.reset()" class="flex flex-col gap-4">
+  <section class="bg-white rounded-xl shadow-xl p-4">
+    <form
+      hx-post="/links"
+      hx-target="#links"
+      hx-swap="outerHTML"
+      hx-on::after-request="this.reset()"
+      hx-indicator="#submit-button-spinner"
+      hx-disabled-elt="button"
+      class="flex flex-col gap-4"
+    >
       <div class="flex flex-col space-y-2">
-        <label
-          for="url"
-          class="text-sm font-medium text-gray-700"
-        >
+        <label for="url" class="text-sm font-medium text-gray-700">
           Enter your long URL
         </label>
         <input
@@ -19,9 +24,34 @@
           required
         />
       </div>
-      <button class="cursor-pointer w-full py-3 px-6 rounded-lg text-white font-medium transition-all duration-200 bg-indigo-600 hover:bg-indigo-700">
-        Shorten URL
+      <button
+        class="cursor-pointer w-full py-3 px-6 rounded-lg text-white font-medium transition-all duration-200 bg-indigo-600 hover:bg-indigo-700 flex items-center justify-center gap-2"
+      >
+        <span id="submit-button">Shorten URL</span>
+        <svg
+          id="submit-button-spinner"
+          class="htmx-indicator hidden ml-2 w-5 h-5 animate-spin"
+          fill="none"
+          viewBox="0 0 24 24"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <circle
+            class="opacity-25"
+            cx="12"
+            cy="12"
+            r="10"
+            stroke="currentColor"
+            stroke-width="4"
+          ></circle>
+          <path
+            class="opacity-75"
+            fill="currentColor"
+            d="M4 12a8 8 0 018-8v4a4 4 0 00-4 4H4z"
+          ></path>
+        </svg>
       </button>
     </form>
   </section>
+
+  <%= render partial: 'links/list', locals: { links: @links } %>
 </div>
