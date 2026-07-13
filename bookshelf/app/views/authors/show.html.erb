@@ -1,0 +1,16 @@
+<h1><%= @author.name %></h1>
+<%= link_to "← all authors", root_path %>
+
+<%= form_with model: [@author, Book.new] do |f| %>
+  <%= f.text_field :title, placeholder: "Book title" %>
+  <%= f.submit "Add book" %>
+<% end %>
+
+<ul>
+  <% @author.books.each do |book| %>
+    <li>
+      <%= book.title %>
+      <%= button_to "x", [@author, book], method: :delete %>
+    </li>
+  <% end %>
+</ul>

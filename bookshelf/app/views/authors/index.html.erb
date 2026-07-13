@@ -1,0 +1,16 @@
+<h1>Bookshelf</h1>
+<% if notice %><p style="color:green"><%= notice %></p><% end %>
+
+<%= form_with model: Author.new do |f| %>
+  <%= f.text_field :name, placeholder: "Author name" %>
+  <%= f.submit "Add author" %>
+<% end %>
+
+<ul>
+  <% @authors.each do |author| %>
+    <li>
+      <%= link_to author.name, author %>
+      (<%= author.books.count %> books)
+    </li>
+  <% end %>
+</ul>
