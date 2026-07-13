@@ -18,6 +18,13 @@ class AuthorsController < ApplicationController
     end
   end
 
+  def destroy
+    author_id = params[:id]
+    Author.find(author_id).destroy
+    redirect_to root_path, notice: "Author and its books removed"
+
+  end
+
   private
 
   def author_params

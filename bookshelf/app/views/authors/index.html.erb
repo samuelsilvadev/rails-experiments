@@ -11,6 +11,8 @@
     <li>
       <%= link_to author.name, author %>
       (<%= author.books.count %> books)
+
+      <%= button_to "x", [author], method: :delete %>
     </li>
   <% end %>
 </ul>
